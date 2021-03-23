@@ -8,6 +8,7 @@ class Editor {
 
    public:
     Editor();
+    Editor(std::string);
     ~Editor();
     void loop();
     void editor(std::string line);

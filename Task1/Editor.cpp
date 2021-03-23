@@ -12,6 +12,11 @@ Editor::Editor() : document() {
     // cout << "Editor created" << endl;
     dot_typed = false;
 }
+Editor::Editor(string file) : document() {
+    // cout << "Editor created" << endl;
+    dot_typed = false;
+    document.open_file(file);
+}
 Editor::~Editor() {
     // cout << "Editor Destructor Called" << endl;
 }

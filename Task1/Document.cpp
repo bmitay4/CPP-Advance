@@ -20,7 +20,7 @@ Document::Document() {
     // cout << "Document created" << endl;
     currentline = 0;
     direction = FORWARD;
-    multi_values = TRUE;
+    multi_values = FALSE;
 }
 
 Document::~Document() {
@@ -58,6 +58,23 @@ void Document::def_j(int value) {
     body.erase(body.begin() + currentline);
     body.erase(body.begin() + currentline);
     body.insert(body.begin() + currentline, first + " " + second);
+}
+void Document::open_file(string file) {
+    cout << currentline << endl;
+    string line;
+    ifstream myfile(file);
+    if (myfile.is_open()) {
+        while (getline(myfile, line)) {
+            if (line.empty()) {
+                cout << "blank" << endl;
+            } else {
+                vector<string>::iterator body_iterator = body.begin();
+                body.insert(body_iterator + (currentline), line);
+                currentline = currentline + 1;
+            }
+        }
+        myfile.close();
+    }
 }
 void Document::def_search_text(string line) {
     const string text = line.substr(1, line.length() - 2);
@@ -134,7 +151,6 @@ void Document::text_parser(string line) {
     if (line.at(0) == '.') return;
     cout << "direction: " << direction << endl;
     vector<string>::iterator body_iterator = body.begin();
-
     if (direction == FORWARD) {
         // body.push_back(line);
         body.insert(body_iterator + (currentline), line);

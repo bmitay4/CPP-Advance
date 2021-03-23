@@ -18,6 +18,7 @@ class Document {
     void def_replace(std::string line);
     void text_parser(std::string line);
     void set_EOF();
+    void open_file(std::string);
     void set_multi_values(int num);
     void write_to_file(std::string line);
     void set_currentline(int num);
