@@ -37,11 +37,10 @@ void SymbolTable::insertToken(string text, shared_ptr<Token> tokenp) {
 }
 
 void SymbolTable::xref() {
-    for (auto& symbol : symMap) {
-        string text = symbol.first;
-        shared_ptr<Token> token = symbol.second;
+    for (auto& i : symMap) {
+        shared_ptr<Token> token = i.second;
         if (token->getType() == IDENTIFIER) {
-            cout << text << "\t";
+            cout << i.first << "\t";
 
             shared_ptr<set<int>> lines = token->getLines();
             set<int>::iterator it;
